@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FormType } from '@/components/FormSelector';
+import { FormType } from '@/components/forms/FormSelector';
 
 interface IInitialState {
   title: string;
   description: string;
-  forms: any[];
+  forms: (typeof initialForm)[];
 }
 
 const initialState: IInitialState = {
@@ -13,31 +13,42 @@ const initialState: IInitialState = {
   forms: [],
 };
 
-interface IFormState {
+interface IForms {
   name: 'title' | 'description';
+  value: string;
+}
+
+interface IForm {
+  index: number;
+  target: 'question' | 'answerType';
   value: string;
 }
 
 const initialForm = {
   question: '제목없는 질문',
-  type: Object.keys(FormType)[0],
+  answerType: Object.keys(FormType)[0],
 };
 
 const formSlice = createSlice({
   name: 'formData',
   initialState,
   reducers: {
-    setForm(state, action) {
-      const { name, value }: IFormState = action.payload;
+    setForms(state, action) {
+      const { name, value }: IForms = action.payload;
       state[name] = value;
     },
 
     addForm(state) {
       state.forms.push(initialForm);
     },
+
+    setForm(state, action) {
+      const { index, target, value }: IForm = action.payload;
+      state.forms[index][target] = value;
+    },
   },
 });
 
-export const { setForm, addForm } = formSlice.actions;
+export const { setForms, addForm, setForm } = formSlice.actions;
 
 export default formSlice.reducer;

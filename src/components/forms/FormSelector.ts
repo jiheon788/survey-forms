@@ -1,3 +1,7 @@
+import CheckBoxForm from './CheckBoxForm';
+import DropdownForm from './DropdownForm';
+import LongAnswerForm from './LongAnswerForm';
+import MultipleChoiceForm from './MultipleChoiceForm';
 import ShortAnswerForm from './ShortAnswerForm';
 
 export const FormType = {
@@ -6,22 +10,23 @@ export const FormType = {
   MULTIPLE_CHOICE: '객관식',
   CHECK_BOX: '체크박스',
   DROPDOWN: '드롭다운',
-};
+} as const;
 
 export type TFormTypeKeys = keyof typeof FormType;
+export type TFormTypeValues = (typeof FormType)[TFormTypeKeys];
 
-const FormSelector = (formType: TFormTypeKeys) => {
+const FormSelector = (formType: TFormTypeValues) => {
   switch (formType) {
     case FormType.SHORT_ANSWER:
       return ShortAnswerForm;
     case FormType.LONG_ANSWER:
-      return;
+      return LongAnswerForm;
     case FormType.MULTIPLE_CHOICE:
-      return;
+      return MultipleChoiceForm;
     case FormType.CHECK_BOX:
-      return;
+      return CheckBoxForm;
     case FormType.DROPDOWN:
-      return;
+      return DropdownForm;
   }
 };
 
