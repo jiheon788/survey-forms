@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import routerMeta from '@/lib/routerMeta';
-import Layout from '@/components/Layout';
+import Layout from '@/components/common/Layout';
 
 const lazyImport = (pageName: string) => lazy(() => import(`@/pages/${pageName}`));
 

@@ -1,35 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FormType } from '@/components/forms/FormSelector';
+import { FormType } from '@/components/FormSelector';
 
-const initialState: IInitialState = {
-  title: '제목 없는 설문지',
-  description: '설문지 설명',
-  forms: [],
-};
-
-interface IForms {
+interface ISetFormsPayload {
   name: 'title' | 'description';
   value: string;
 }
 
-interface IInitialState {
-  title: string;
-  description: string;
-  forms: (typeof initialForm)[];
-}
-
-interface IForm {
+interface ISetFormPayload {
   formIndex: number;
   target: 'questionBody' | 'answerType';
   value: string;
 }
-
-interface IItem {
-  formIndex: number;
-  optionIndex: number;
-  value: string;
-}
-
 const initialForm = {
   id: 'initial',
   questionBody: '제목없는 질문',
@@ -38,12 +19,18 @@ const initialForm = {
   options: [{ id: 'initial', value: '' }],
 };
 
+const initialState = {
+  title: '제목 없는 설문지',
+  description: '설문지 설명',
+  forms: [initialForm],
+};
+
 const formSlice = createSlice({
   name: 'formData',
   initialState,
   reducers: {
     setForms(state, action) {
-      const { name, value }: IForms = action.payload;
+      const { name, value }: ISetFormsPayload = action.payload;
       state[name] = value;
     },
 
@@ -53,7 +40,7 @@ const formSlice = createSlice({
     },
 
     setForm(state, action) {
-      const { formIndex, target, value }: IForm = action.payload;
+      const { formIndex, target, value }: ISetFormPayload = action.payload;
       state.forms[formIndex][target] = value;
     },
 
@@ -78,12 +65,12 @@ const formSlice = createSlice({
     },
 
     deleteOption(state, action) {
-      const { formIndex, optionIndex }: IItem = action.payload;
+      const { formIndex, optionIndex } = action.payload;
       state.forms[formIndex].options.splice(optionIndex, 1);
     },
 
     setOption(state, action) {
-      const { formIndex, optionIndex, value }: IItem = action.payload;
+      const { formIndex, optionIndex, value } = action.payload;
       state.forms[formIndex].options[optionIndex].value = value;
     },
   },
