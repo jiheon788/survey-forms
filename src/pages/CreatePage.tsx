@@ -20,11 +20,13 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { PlusSquareIcon, ViewIcon, CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { addForm, setForms, setForm } from '@/store/slices/formSlice';
 import FormSelector, { FormType, TFormTypeKeys } from '@/components/forms/FormSelector';
 
 const CreatePage = () => {
+  const [focusedIndex, setFocusedIndex] = useState<null | number>(null);
   const { formData } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -70,10 +72,11 @@ const CreatePage = () => {
             bg="white"
             w="100%"
             borderRadius="md"
-            boxShadow="lg"
+            boxShadow={focusedIndex === index ? 'lg' : 'md'}
             key={index}
-            borderLeft="8px"
+            borderLeft={focusedIndex === index ? '8px' : ''}
             borderColor="teal.500"
+            onClick={() => setFocusedIndex(index)}
           >
             <Center p="5px 0 0 0">
               <DragHandleIcon transform="rotate(90deg)" />
@@ -134,7 +137,10 @@ const CreatePage = () => {
         border="3px"
         borderStyle="dashed"
         borderColor="teal.600"
-        onClick={() => dispatch(addForm())}
+        onClick={() => {
+          dispatch(addForm());
+          setFocusedIndex(formData.forms.length);
+        }}
       />
     </>
   );
