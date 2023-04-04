@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 import { theme } from '@/lib/styles/theme';
-import { store } from '@/store/index';
+import { store } from '@/store';
 import DynamicRoutes from './DynamicRoutes';
 
 const App = () => {

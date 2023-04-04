@@ -30,7 +30,7 @@ const CreatePage = () => {
   const { formData } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  console.log(formData);
+  // console.log(formData);
 
   return (
     <>
@@ -64,31 +64,29 @@ const CreatePage = () => {
         </CardBody>
       </Card>
 
-      {formData.forms.map((form, index) => {
-        const FormComponent = FormSelector(FormType[form.answerType as TFormTypeKeys]);
-
+      {formData.forms.map((form, formIndex) => {
         return (
           <Card
             bg="white"
             w="100%"
             borderRadius="md"
-            boxShadow={focusedIndex === index ? 'lg' : 'md'}
-            key={index}
-            borderLeft={focusedIndex === index ? '8px' : ''}
+            boxShadow={focusedIndex === formIndex ? 'lg' : 'md'}
+            key={formIndex}
+            borderLeft={focusedIndex === formIndex ? '8px' : ''}
             borderColor="teal.500"
-            onClick={() => setFocusedIndex(index)}
+            onClick={() => setFocusedIndex(formIndex)}
           >
             <Center p="5px 0 0 0">
               <DragHandleIcon transform="rotate(90deg)" />
             </Center>
             <CardHeader>
               <Flex>
-                <Editable defaultValue={form.question} placeholder="질문을 입력하세요" fontSize="xl">
+                <Editable defaultValue={form.questionBody} placeholder="질문을 입력하세요" fontSize="xl">
                   <EditablePreview />
                   <EditableInput
-                    name="question"
+                    name="questionBody"
                     onChange={(e) => {
-                      dispatch(setForm({ index, target: e.target.name, value: e.target.value }));
+                      dispatch(setForm({ formIndex, target: e.target.name, value: e.target.value }));
                     }}
                   />
                 </Editable>
@@ -97,7 +95,7 @@ const CreatePage = () => {
                   w="200px"
                   defaultValue={form.answerType}
                   onChange={(e) => {
-                    dispatch(setForm({ index, target: 'answerType', value: e.target.value }));
+                    dispatch(setForm({ formIndex, target: 'answerType', value: e.target.value }));
                   }}
                 >
                   {Object.keys(FormType).map((formKey) => (
@@ -108,12 +106,18 @@ const CreatePage = () => {
                 </Select>
               </Flex>
             </CardHeader>
-            <CardBody>{FormComponent && <FormComponent />}</CardBody>
+            <CardBody>
+              <FormSelector formType={FormType[form.answerType as TFormTypeKeys]} formIndex={formIndex} />
+            </CardBody>
 
             <CardFooter>
               <ButtonGroup>
-                <IconButton aria-label="copy" icon={<CopyIcon />} onClick={() => dispatch(copyForm({ index }))} />
-                <IconButton aria-label="delete" icon={<DeleteIcon />} onClick={() => dispatch(deleteForm({ index }))} />
+                <IconButton aria-label="copy" icon={<CopyIcon />} onClick={() => dispatch(copyForm({ formIndex }))} />
+                <IconButton
+                  aria-label="delete"
+                  icon={<DeleteIcon />}
+                  onClick={() => dispatch(deleteForm({ formIndex }))}
+                />
                 <FormControl display="flex" alignItems="center">
                   <FormLabel htmlFor="is-mandatory" mb="0">
                     필수
@@ -121,7 +125,7 @@ const CreatePage = () => {
                   <Switch
                     id="is-mandatory"
                     isChecked={form.isMandatory}
-                    onChange={(_) => dispatch(toggleForm({ index }))}
+                    onChange={(_) => dispatch(toggleForm({ formIndex }))}
                   />
                 </FormControl>
               </ButtonGroup>

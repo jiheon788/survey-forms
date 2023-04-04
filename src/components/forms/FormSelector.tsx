@@ -15,18 +15,24 @@ export const FormType = {
 export type TFormTypeKeys = keyof typeof FormType;
 export type TFormTypeValues = (typeof FormType)[TFormTypeKeys];
 
-const FormSelector = (formType: TFormTypeValues) => {
+export interface IFormSelectorProps {
+  formType: TFormTypeValues;
+  formIndex: number;
+}
+
+const FormSelector = ({ formType, formIndex }: IFormSelectorProps) => {
+  console.log(formIndex);
   switch (formType) {
     case FormType.SHORT_ANSWER:
-      return ShortAnswerForm;
+      return <ShortAnswerForm />;
     case FormType.LONG_ANSWER:
-      return LongAnswerForm;
+      return <LongAnswerForm />;
     case FormType.MULTIPLE_CHOICE:
-      return MultipleChoiceForm;
+      return <MultipleChoiceForm formIndex={formIndex} />;
     case FormType.CHECK_BOX:
-      return CheckBoxForm;
+      return <CheckBoxForm formIndex={formIndex} />;
     case FormType.DROPDOWN:
-      return DropdownForm;
+      return <DropdownForm formIndex={formIndex} />;
   }
 };
 

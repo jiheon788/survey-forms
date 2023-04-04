@@ -12,15 +12,10 @@ const pages = Object.keys(routerMeta).map((componentKey: string) => {
   };
 });
 
-interface IDynamicRoutes {
-  Component: React.LazyExoticComponent<React.ComponentType<any>>;
-  path: string;
-}
-
 const DynamicRoutes = () => (
   <Routes>
     <Route element={<Layout />}>
-      {pages.map(({ Component, path }: IDynamicRoutes) => (
+      {pages.map(({ Component, path }) => (
         <Route
           key={path}
           path={path}
