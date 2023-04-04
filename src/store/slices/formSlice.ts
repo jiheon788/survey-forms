@@ -47,6 +47,11 @@ const formSlice = createSlice({
       state.forms[index][target] = value;
     },
 
+    copyForm(state, action) {
+      const { index } = action.payload;
+      state.forms.push({ ...state.forms[index] });
+    },
+
     deleteForm(state, action) {
       const { index } = action.payload;
       state.forms.splice(index, 1);
@@ -54,6 +59,6 @@ const formSlice = createSlice({
   },
 });
 
-export const { setForms, addForm, setForm, deleteForm } = formSlice.actions;
+export const { setForms, addForm, setForm, copyForm, deleteForm } = formSlice.actions;
 
 export default formSlice.reducer;

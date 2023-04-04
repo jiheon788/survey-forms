@@ -22,7 +22,7 @@ import {
 import { PlusSquareIcon, ViewIcon, CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addForm, setForms, setForm, deleteForm } from '@/store/slices/formSlice';
+import { addForm, setForms, setForm, deleteForm, copyForm } from '@/store/slices/formSlice';
 import FormSelector, { FormType, TFormTypeKeys } from '@/components/forms/FormSelector';
 
 const CreatePage = () => {
@@ -112,7 +112,7 @@ const CreatePage = () => {
 
             <CardFooter>
               <ButtonGroup>
-                <IconButton aria-label="copy" icon={<CopyIcon />} />
+                <IconButton aria-label="copy" icon={<CopyIcon />} onClick={() => dispatch(copyForm({ index }))} />
                 <IconButton aria-label="delete" icon={<DeleteIcon />} onClick={() => dispatch(deleteForm({ index }))} />
                 <FormControl display="flex" alignItems="center">
                   <FormLabel htmlFor="is-mandatory" mb="0">
