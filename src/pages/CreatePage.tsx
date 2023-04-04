@@ -22,7 +22,7 @@ import {
 import { PlusSquareIcon, ViewIcon, CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addForm, setForms, setForm, deleteForm, copyForm } from '@/store/slices/formSlice';
+import { addForm, setForms, setForm, deleteForm, copyForm, toggleForm } from '@/store/slices/formSlice';
 import FormSelector, { FormType, TFormTypeKeys } from '@/components/forms/FormSelector';
 
 const CreatePage = () => {
@@ -118,7 +118,11 @@ const CreatePage = () => {
                   <FormLabel htmlFor="is-mandatory" mb="0">
                     필수
                   </FormLabel>
-                  <Switch id="is-mandatory" />
+                  <Switch
+                    id="is-mandatory"
+                    isChecked={form.isMandatory}
+                    onChange={(_) => dispatch(toggleForm({ index }))}
+                  />
                 </FormControl>
               </ButtonGroup>
             </CardFooter>
