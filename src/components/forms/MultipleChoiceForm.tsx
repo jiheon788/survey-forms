@@ -1,7 +1,7 @@
-import { Radio, Editable, EditableInput, EditablePreview, Flex, Stack, IconButton } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+import { Radio, Editable, EditableInput, EditablePreview, Flex, Stack, IconButton, Spacer } from '@chakra-ui/react';
+import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addItem } from '@/store/slices/formSlice';
+import { addItem, deleteItem } from '@/store/slices/formSlice';
 import { IFormSelectorProps } from './FormSelector';
 
 const MultipleChoiceForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
@@ -10,13 +10,21 @@ const MultipleChoiceForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>
 
   return (
     <Stack>
-      {question.items.map((item) => (
-        <Flex gap="5px" key={item}>
+      {question.items.map((item, itemIndex) => (
+        <Flex gap="5px" key={item} alignItems="center">
           <Radio isChecked={false} value={item} />
-          <Editable defaultValue={item} placeholder="옵션을 입력하세요">
+          <Editable defaultValue={item} placeholder={`옵션 ${itemIndex + 1}`}>
             <EditablePreview />
             <EditableInput name="option" />
           </Editable>
+          <Spacer />
+          <IconButton
+            aria-label="delete"
+            icon={<CloseIcon />}
+            size="sm"
+            variant="ghost"
+            onClick={() => dispatch(deleteItem({ formIndex, itemIndex }))}
+          />
         </Flex>
       ))}
 

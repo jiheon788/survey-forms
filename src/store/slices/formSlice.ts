@@ -28,7 +28,7 @@ const initialForm = {
   questionBody: '제목없는 질문',
   answerType: Object.keys(FormType)[0],
   isMandatory: false,
-  items: ['옵션 1'],
+  items: [''],
 };
 
 const formSlice = createSlice({
@@ -66,11 +66,16 @@ const formSlice = createSlice({
 
     addItem(state, action) {
       const { formIndex } = action.payload;
-      state.forms[formIndex].items.push(`옵션 ${state.forms[formIndex].items.length + 1}`);
+      state.forms[formIndex].items.push(``);
+    },
+
+    deleteItem(state, action) {
+      const { formIndex, itemIndex } = action.payload;
+      state.forms[formIndex].items.splice(itemIndex, 1);
     },
   },
 });
 
-export const { setForms, addForm, setForm, copyForm, deleteForm, toggleForm, addItem } = formSlice.actions;
+export const { setForms, addForm, setForm, copyForm, deleteForm, toggleForm, addItem, deleteItem } = formSlice.actions;
 
 export default formSlice.reducer;

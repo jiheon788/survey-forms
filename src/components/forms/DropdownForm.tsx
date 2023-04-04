@@ -8,10 +8,11 @@ import {
   Checkbox,
   OrderedList,
   ListItem,
+  Spacer,
 } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addItem } from '@/store/slices/formSlice';
+import { addItem, deleteItem } from '@/store/slices/formSlice';
 import { IFormSelectorProps } from './FormSelector';
 
 const DropdownForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
@@ -21,13 +22,21 @@ const DropdownForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
   return (
     <Stack>
       <OrderedList>
-        {question.items.map((item) => (
+        {question.items.map((item, itemIndex) => (
           <ListItem key={item}>
-            <Flex gap="5px">
-              <Editable defaultValue={item} placeholder="옵션을 입력하세요">
+            <Flex alignItems="center">
+              <Editable defaultValue={item} placeholder={`옵션 ${itemIndex + 1}`}>
                 <EditablePreview />
                 <EditableInput name="option" />
               </Editable>
+              <Spacer />
+              <IconButton
+                aria-label="delete"
+                icon={<CloseIcon />}
+                size="sm"
+                variant="ghost"
+                onClick={() => dispatch(deleteItem({ formIndex, itemIndex }))}
+              />
             </Flex>
           </ListItem>
         ))}
