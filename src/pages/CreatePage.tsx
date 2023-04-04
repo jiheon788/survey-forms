@@ -34,12 +34,7 @@ const CreatePage = () => {
 
   return (
     <>
-      <Flex>
-        <Heading color="teal.900">Survey Forms</Heading>
-        <Spacer />
-        <IconButton colorScheme="teal" aria-label="preview" size="lg" icon={<ViewIcon />} />
-      </Flex>
-      <Card bg="white" w="100%" borderRadius="md" boxShadow="lg">
+      <Card bg="white" w="100%" borderRadius="md" boxShadow="sm">
         <CardHeader>
           <Editable defaultValue={formData.title} placeholder="제목을 입력하세요" fontSize="2xl">
             <EditablePreview />
@@ -70,7 +65,7 @@ const CreatePage = () => {
             bg="white"
             w="100%"
             borderRadius="md"
-            boxShadow={focusedIndex === formIndex ? 'lg' : 'md'}
+            boxShadow={focusedIndex === formIndex ? 'md' : 'sm'}
             key={formIndex}
             borderLeft={focusedIndex === formIndex ? '8px' : ''}
             borderColor="teal.500"

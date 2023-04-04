@@ -21,7 +21,6 @@ export interface IFormSelectorProps {
 }
 
 const FormSelector = ({ formType, formIndex }: IFormSelectorProps) => {
-  console.log(formIndex);
   switch (formType) {
     case FormType.SHORT_ANSWER:
       return <ShortAnswerForm />;

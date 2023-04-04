@@ -6,12 +6,18 @@
 - [x] 질문 추가
     - [x] 단답형 input
     - [x] 장문형 textarea
-    - [ ] 객관식 질문 radio
-    - [ ] 체크박스 checkbox
-    - [ ] 드롭다운 리스트-Select
+    - [x] 객관식 질문 radio
+    - [x] 체크박스 checkbox
+    - [x] 드롭다운 리스트-Select
 - [x] 질문 복사 기능
 - [x] 질문 삭제 기능
 - [x] 필수 옵션 설정 기능
+
+- [x] 질문 옵션 추가
+- [ ] 질문 옵션 삭제
+- [ ] 질문 옵션 수정
+
+
 
 ## Optional Requirements
 
