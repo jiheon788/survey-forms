@@ -6,12 +6,12 @@ import { addOption, deleteOption, setOption } from '@/store/slices/formSlice';
 import { IFormSelectorProps } from './FormSelector';
 
 const MultipleChoiceForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
-  const question = useAppSelector((state) => state.formData.forms[formIndex]);
+  const { options } = useAppSelector((state) => state.formData.forms[formIndex]);
   const dispatch = useAppDispatch();
 
   return (
     <Stack>
-      {question.options.map((option, optionIndex) => (
+      {options.map((option, optionIndex) => (
         <Flex gap="5px" key={option.id} alignItems="center">
           <Radio isChecked={false} />
           <Editable defaultValue={option.value} placeholder={`옵션 ${optionIndex + 1}`}>

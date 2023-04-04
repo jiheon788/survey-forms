@@ -2,21 +2,21 @@ import { Editable, EditableInput, EditablePreview, Flex, Stack, IconButton, Chec
 import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 import uuid from 'react-uuid';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addOption, deleteOption } from '@/store/slices/formSlice';
+import { addOption, deleteOption, setOption } from '@/store/slices/formSlice';
 import { IFormSelectorProps } from './FormSelector';
 
 const CheckBoxForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
-  const question = useAppSelector((state) => state.formData.forms[formIndex]);
+  const { options } = useAppSelector((state) => state.formData.forms[formIndex]);
   const dispatch = useAppDispatch();
 
   return (
     <Stack>
-      {question.options.map((option, optionIndex) => (
+      {options.map((option, optionIndex) => (
         <Flex gap="5px" key={option.id} alignItems="center">
           <Checkbox isChecked={false} />
           <Editable defaultValue={option.value} placeholder={`옵션 ${optionIndex + 1}`}>
             <EditablePreview />
-            <EditableInput name="option" />
+            <EditableInput onChange={(e) => dispatch(setOption({ formIndex, optionIndex, value: e.target.value }))} />
           </Editable>
           <Spacer />
           <IconButton

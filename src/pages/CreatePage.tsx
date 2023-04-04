@@ -31,8 +31,6 @@ const CreatePage = () => {
   const { formData } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  console.log(formData);
-
   return (
     <>
       <Card bg="white" w="100%" borderRadius="md" boxShadow="sm">

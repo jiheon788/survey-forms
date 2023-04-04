@@ -16,13 +16,13 @@ import { addOption, deleteOption, setOption } from '@/store/slices/formSlice';
 import { IFormSelectorProps } from './FormSelector';
 
 const DropdownForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
-  const question = useAppSelector((state) => state.formData.forms[formIndex]);
+  const { options } = useAppSelector((state) => state.formData.forms[formIndex]);
   const dispatch = useAppDispatch();
 
   return (
     <Stack>
       <OrderedList>
-        {question.options.map((option, optionIndex) => {
+        {options.map((option, optionIndex) => {
           return (
             <ListItem key={option.id}>
               <Flex alignItems="center">
