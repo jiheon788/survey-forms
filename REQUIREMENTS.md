@@ -1,8 +1,8 @@
 # Requirements Specifications
 
 ## Mandatory Requirements
-- [ ] 설문지 제목 추가, 편집
-- [ ] 설문지 설명 추가, 편집
+- [x] 설문지 제목 추가, 편집
+- [x] 설문지 설명 추가, 편집
 - [ ] 질문 추가
     - [ ] 단답형
     - [ ] 장문형
