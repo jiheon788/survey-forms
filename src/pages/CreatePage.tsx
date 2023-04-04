@@ -1,17 +1,19 @@
-import { Box, Editable, EditableInput, EditableTextarea, EditablePreview, Input } from '@chakra-ui/react';
+import { Box, Editable, EditableInput, EditableTextarea, EditablePreview, IconButton, Select } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { setForm } from '@/store/slices/formSlice';
+import { addForm, setForm } from '@/store/slices/formSlice';
+import { FormType, TFormTypeKeys } from '@/components/FormSelector';
 
 const CreatePage = () => {
-  const { form } = useAppSelector((state) => state);
+  const { formData } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  console.log(form);
+  console.log(formData);
 
   return (
     <>
       <Box bg="white" w="100%" borderRadius="md" boxShadow="lg">
-        <Editable defaultValue={form.title} placeholder="제목을 입력하세요" fontSize="2xl">
+        <Editable defaultValue={formData.title} placeholder="제목을 입력하세요" fontSize="2xl">
           <EditablePreview />
           <EditableInput
             name="title"
@@ -21,7 +23,7 @@ const CreatePage = () => {
           />
         </Editable>
 
-        <Editable defaultValue={form.description} placeholder="설명을 입력하세요">
+        <Editable defaultValue={formData.description} placeholder="설명을 입력하세요">
           <EditablePreview />
           <EditableTextarea
             name="description"
@@ -31,6 +33,33 @@ const CreatePage = () => {
           />
         </Editable>
       </Box>
+
+      {formData.forms.map((form, index) => (
+        <Box bg="white" w="100%" borderRadius="md" boxShadow="lg" key={index}>
+          <Editable defaultValue={form.question} placeholder="제목을 입력하세요" fontSize="2xl">
+            <EditablePreview />
+            <EditableInput name="title" />
+          </Editable>
+          <Select defaultValue={form.type}>
+            {Object.keys(FormType).map((formKey) => (
+              <option key={formKey} value={formKey}>
+                {FormType[formKey as TFormTypeKeys]}
+              </option>
+            ))}
+          </Select>
+        </Box>
+      ))}
+
+      <IconButton
+        aria-label="Add database"
+        icon={<AddIcon />}
+        w="100%"
+        height="100px"
+        borderRadius="md"
+        border="3px"
+        borderStyle="dashed"
+        onClick={() => dispatch(addForm())}
+      />
     </>
   );
 };
