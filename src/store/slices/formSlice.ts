@@ -24,11 +24,18 @@ interface IForm {
   value: string;
 }
 
+interface IItem {
+  formIndex: number;
+  optionIndex: number;
+  value: string;
+}
+
 const initialForm = {
+  id: 'initial',
   questionBody: '제목없는 질문',
   answerType: Object.keys(FormType)[0],
   isMandatory: false,
-  items: [''],
+  options: [{ id: 'initial', value: '' }],
 };
 
 const formSlice = createSlice({
@@ -40,8 +47,9 @@ const formSlice = createSlice({
       state[name] = value;
     },
 
-    addForm(state) {
-      state.forms.push(initialForm);
+    addForm(state, action) {
+      const { id } = action.payload;
+      state.forms.push({ ...initialForm, id });
     },
 
     setForm(state, action) {
@@ -64,18 +72,24 @@ const formSlice = createSlice({
       state.forms[formIndex].isMandatory = !state.forms[formIndex].isMandatory;
     },
 
-    addItem(state, action) {
-      const { formIndex } = action.payload;
-      state.forms[formIndex].items.push(``);
+    addOption(state, action) {
+      const { formIndex, id } = action.payload;
+      state.forms[formIndex].options.push({ id, value: '' });
     },
 
-    deleteItem(state, action) {
-      const { formIndex, itemIndex } = action.payload;
-      state.forms[formIndex].items.splice(itemIndex, 1);
+    deleteOption(state, action) {
+      const { formIndex, optionIndex }: IItem = action.payload;
+      state.forms[formIndex].options.splice(optionIndex, 1);
+    },
+
+    setOption(state, action) {
+      const { formIndex, optionIndex, value }: IItem = action.payload;
+      state.forms[formIndex].options[optionIndex].value = value;
     },
   },
 });
 
-export const { setForms, addForm, setForm, copyForm, deleteForm, toggleForm, addItem, deleteItem } = formSlice.actions;
+export const { setForms, addForm, setForm, copyForm, deleteForm, toggleForm, addOption, deleteOption, setOption } =
+  formSlice.actions;
 
 export default formSlice.reducer;
