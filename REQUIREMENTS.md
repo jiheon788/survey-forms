@@ -10,7 +10,7 @@
     - [ ] 체크박스 checkbox
     - [ ] 드롭다운 리스트-Select
 - [ ] 질문 복사 기능
-- [ ] 질문 삭제 기능
+- [x] 질문 삭제 기능
 - [ ] 필수 옵션 설정 기능
 
 ## Optional Requirements
