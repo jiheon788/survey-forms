@@ -45,8 +45,8 @@ const formSlice = createSlice({
     },
 
     copyForm(state, action) {
-      const { formIndex } = action.payload;
-      state.forms.push({ ...state.forms[formIndex] });
+      const { formIndex, id } = action.payload;
+      state.forms.push({ ...state.forms[formIndex], id });
     },
 
     deleteForm(state, action) {

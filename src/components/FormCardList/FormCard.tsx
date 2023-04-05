@@ -17,6 +17,7 @@ import {
   Spacer,
 } from '@chakra-ui/react';
 import { CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
+import uuid from 'react-uuid';
 import { useAppDispatch } from '@/store';
 import { setForm, deleteForm, copyForm, toggleForm } from '@/store/slices/formSlice';
 import FormSelector, { FormType, TFormTypeKeys } from '@/components/FormSelector';
@@ -88,7 +89,11 @@ const FormCard = ({ form, formIndex, focusedIndex, setFocusedIndex }: IFormCardP
 
       <CardFooter>
         <ButtonGroup>
-          <IconButton aria-label="copy" icon={<CopyIcon />} onClick={() => dispatch(copyForm({ formIndex }))} />
+          <IconButton
+            aria-label="copy"
+            icon={<CopyIcon />}
+            onClick={() => dispatch(copyForm({ formIndex, id: uuid() }))}
+          />
           <IconButton aria-label="delete" icon={<DeleteIcon />} onClick={() => dispatch(deleteForm({ formIndex }))} />
           <FormControl display="flex" alignItems="center">
             <FormLabel htmlFor="is-mandatory" mb="0">
