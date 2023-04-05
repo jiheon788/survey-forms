@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Flex, Spacer, Heading, IconButton, Button, ButtonGroup } from '@chakra-ui/react';
 import { ViewIcon } from '@chakra-ui/icons';
-import routerMeta from '@/lib/routerMeta';
+import RouterMeta from '@/meta/RouterMeta';
 
 const Header = () => {
   return (
@@ -9,12 +9,12 @@ const Header = () => {
       <Heading color="teal.800">Survey Forms</Heading>
       <Spacer />
       <ButtonGroup>
-        <NavLink to={routerMeta.CreatePage.path}>
+        <NavLink to={RouterMeta.CreatePage.path}>
           <Button colorScheme="teal" aria-label="preview" size="lg" variant="ghost">
             Create Form
           </Button>
         </NavLink>
-        <NavLink to={routerMeta.PreviewPage.path}>
+        <NavLink to={RouterMeta.PreviewPage.path}>
           <IconButton colorScheme="teal" aria-label="preview" size="lg" icon={<ViewIcon />} variant="ghost" />
         </NavLink>
       </ButtonGroup>

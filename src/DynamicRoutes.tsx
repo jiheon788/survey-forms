@@ -1,14 +1,14 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import routerMeta from '@/lib/routerMeta';
 import Layout from '@/components/common/Layout';
+import RouterMeta from '@/meta/RouterMeta';
 
 const lazyImport = (pageName: string) => lazy(() => import(`@/pages/${pageName}`));
 
-const pages = Object.keys(routerMeta).map((componentKey: string) => {
+const pages = Object.keys(RouterMeta).map((componentKey: string) => {
   return {
     Component: lazyImport(componentKey),
-    path: routerMeta[componentKey].path,
+    path: RouterMeta[componentKey].path,
   };
 });
 

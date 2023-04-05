@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
-import { theme } from '@/lib/styles/theme';
+import { theme } from '@/styles/theme';
 import { store } from '@/store';
 import DynamicRoutes from './DynamicRoutes';
 

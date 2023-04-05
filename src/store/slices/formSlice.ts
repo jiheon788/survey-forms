@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FormType } from '@/components/FormSelector';
+import FormMeta from '@/meta/FormMeta';
 
 interface ISetFormsPayload {
   name: 'title' | 'description';
@@ -14,7 +14,7 @@ interface ISetFormPayload {
 const initialForm = {
   id: 'initial',
   questionBody: '제목없는 질문',
-  answerType: Object.keys(FormType)[0],
+  answerType: Object.keys(FormMeta)[0],
   isMandatory: false,
   options: [{ id: 'initial', value: '' }],
 };

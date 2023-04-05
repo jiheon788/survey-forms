@@ -1,5 +1,5 @@
-import FormInfo from '@/components/FormInfo';
-import FormCardList from '@/components/FormCardList';
+import FormInfo from '@/components/formCreator/FormInfo';
+import FormCardList from '@/components/formCreator/FormCardList';
 
 const CreatePage = () => {
   return (

@@ -7,7 +7,7 @@ import { addForm } from '@/store/slices/formSlice';
 import FormCard from './FormCard';
 
 const FormCardList = () => {
-  const [focusedIndex, setFocusedIndex] = useState<null | number>(null);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
   const { forms } = useAppSelector((state) => state.formData);
   const dispatch = useAppDispatch();
 

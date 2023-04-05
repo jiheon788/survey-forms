@@ -6,7 +6,7 @@ export type RouterMetaType = {
   [key: string]: IRouterMeta;
 };
 
-const routerMeta: RouterMetaType = {
+const RouterMeta: RouterMetaType = {
   HomePage: {
     path: '/',
   },
@@ -16,6 +16,6 @@ const routerMeta: RouterMetaType = {
   PreviewPage: {
     path: '/preview',
   },
-};
+} as const;
 
-export default routerMeta;
+export default RouterMeta;

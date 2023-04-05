@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import routerMeta from '@/lib/routerMeta';
+import RouterMeta from '@/meta/RouterMeta';
 
 const HomePage = () => {
-  return <Navigate to={routerMeta.CreatePage.path} replace={true} />;
+  return <Navigate to={RouterMeta.CreatePage.path} replace={true} />;
 };
 
 export default HomePage;
