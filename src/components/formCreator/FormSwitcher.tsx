@@ -5,12 +5,12 @@ import LongAnswerForm from './LongAnswerForm';
 import MultipleChoiceForm from './MultipleChoiceForm';
 import ShortAnswerForm from './ShortAnswerForm';
 
-export interface IFormSelectorProps {
+export interface IFormSwitcherProps {
   formType: FormMetaValueType;
   formIndex: number;
 }
 
-const FormSelector = ({ formType, formIndex }: IFormSelectorProps) => {
+const FormSwitcher = ({ formType, formIndex }: IFormSwitcherProps) => {
   switch (formType) {
     case FormMeta.SHORT_ANSWER:
       return <ShortAnswerForm />;
@@ -25,4 +25,4 @@ const FormSelector = ({ formType, formIndex }: IFormSelectorProps) => {
   }
 };
 
-export default FormSelector;
+export default FormSwitcher;

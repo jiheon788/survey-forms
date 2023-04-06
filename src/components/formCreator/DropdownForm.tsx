@@ -13,9 +13,9 @@ import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 import uuid from 'react-uuid';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { addOption, deleteOption, setOption } from '@/store/slices/formSlice';
-import { IFormSelectorProps } from './FormSelector';
+import { IFormSwitcherProps } from './FormSwitcher';
 
-const DropdownForm = ({ formIndex }: Pick<IFormSelectorProps, 'formIndex'>) => {
+const DropdownForm = ({ formIndex }: Pick<IFormSwitcherProps, 'formIndex'>) => {
   const { options } = useAppSelector((state) => state.formData.forms[formIndex]);
   const dispatch = useAppDispatch();
 

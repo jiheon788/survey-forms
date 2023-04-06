@@ -20,7 +20,7 @@ import { CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
 import uuid from 'react-uuid';
 import { useAppDispatch } from '@/store';
 import { setForm, deleteForm, copyForm, toggleForm } from '@/store/slices/formSlice';
-import FormSelector from '@/components/formCreator/FormSelector';
+import FormSwitcher from '@/components/formCreator/FormSwitcher';
 import FormMeta, { FormMetaKeysType } from '@/meta/FormMeta';
 
 interface IForm {
@@ -85,7 +85,7 @@ const FormCard = ({ form, formIndex, focusedIndex, setFocusedIndex }: IFormCardP
         </Flex>
       </CardHeader>
       <CardBody>
-        <FormSelector formType={FormMeta[form.answerType as FormMetaKeysType]} formIndex={formIndex} />
+        <FormSwitcher formType={FormMeta[form.answerType as FormMetaKeysType]} formIndex={formIndex} />
       </CardBody>
 
       <CardFooter>

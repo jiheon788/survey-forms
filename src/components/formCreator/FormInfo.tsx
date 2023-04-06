@@ -9,14 +9,13 @@ import {
 } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setForms } from '@/store/slices/formSlice';
-import CardLayout from '../common/CardLayout';
 
 const FormInfo = () => {
   const { formData } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
   return (
-    <CardLayout>
+    <Card bg="white" w="100%" borderRadius="md" boxShadow="sm">
       <CardHeader>
         <Editable defaultValue={formData.title} placeholder="제목을 입력하세요" fontSize="2xl">
           <EditablePreview />
@@ -39,7 +38,7 @@ const FormInfo = () => {
           />
         </Editable>
       </CardBody>
-    </CardLayout>
+    </Card>
   );
 };
 
