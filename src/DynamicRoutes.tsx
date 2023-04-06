@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from '@/components/common/Layout';
 import RouterMeta from '@/meta/RouterMeta';
+import LoadingFallback from '@/components/common/LoadingFallback';
 
 const lazyImport = (pageName: string) => lazy(() => import(`@/pages/${pageName}`));
 
@@ -20,7 +21,7 @@ const DynamicRoutes = () => (
           key={path}
           path={path}
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<LoadingFallback />}>
               <Component />
             </Suspense>
           }

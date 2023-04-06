@@ -29,7 +29,7 @@ const DropdownForm = ({ formIndex }: Pick<IFormSwitcherProps, 'formIndex'>) => {
             onDragEnd={onSwipe}
           >
             <DragHandleIcon color="gray.500" cursor="grab" onMouseOver={onDraggable} onMouseOut={onDisDraggable} />
-            <Editable defaultValue={option.value} placeholder={`옵션 ${optionIndex + 1}`}>
+            <Editable defaultValue={option.value} placeholder={'옵션을 입력하세요'}>
               <EditablePreview />
               <EditableInput onChange={(e) => dispatch(setOption({ formIndex, optionIndex, value: e.target.value }))} />
             </Editable>

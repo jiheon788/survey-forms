@@ -12,9 +12,9 @@ const CheckBoxForm = ({ register, formData, isResult }: IFormSelectorProps) => {
       defaultValue={isResult ? resultData[formData.id as keyof typeof resultData] : ['']}
     >
       <Stack>
-        {formData.options.map((option, index) => (
-          <Checkbox key={option.id} value={option.value || `옵션 ${index + 1}`} {...register(formData.id)}>
-            {option.value || `옵션 ${index + 1}`}
+        {formData.options.map((option) => (
+          <Checkbox key={option.id} value={option.value || 'Null'} {...register(formData.id)}>
+            {option.value || 'Null'}
           </Checkbox>
         ))}
       </Stack>

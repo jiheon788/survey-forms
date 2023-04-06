@@ -11,9 +11,9 @@ const DropdownForm = ({ register, formData, isResult }: IFormSelectorProps) => {
       {...register(formData.id)}
       isDisabled={isResult}
     >
-      {formData.options.map((option, index) => (
-        <option key={option.id} value={option.value || `옵션 ${index + 1}`}>
-          {option.value || `옵션 ${index + 1}`}
+      {formData.options.map((option) => (
+        <option key={option.id} value={option.value || 'Null'}>
+          {option.value || 'Null'}
         </option>
       ))}
     </Select>

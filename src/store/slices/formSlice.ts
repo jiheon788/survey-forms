@@ -16,7 +16,7 @@ const initialForm = {
   questionBody: '제목없는 질문',
   answerType: Object.keys(FormMeta)[0],
   isMandatory: false,
-  options: [{ id: 'initial', value: '' }],
+  options: [{ id: 'initial', value: '옵션 1' }],
 };
 
 const initialState = {
@@ -49,24 +49,6 @@ const formSlice = createSlice({
       state.forms.push({ ...state.forms[formIndex], id });
     },
 
-    swipeForm(state, action) {
-      const { dragItemRef, dragOverItemRef } = action.payload;
-      const copiedState = JSON.parse(JSON.stringify(state));
-      const dragItem = copiedState.forms[dragItemRef.current];
-      copiedState.forms.splice(dragItemRef.current, 1);
-      copiedState.forms.splice(dragOverItemRef.current, 0, dragItem);
-      state.forms = copiedState.forms;
-    },
-
-    swipeOption(state, action) {
-      const { formIndex, dragItemRef, dragOverItemRef } = action.payload;
-      const copiedState = JSON.parse(JSON.stringify(state));
-      const dragItem = copiedState.forms[formIndex].options[dragItemRef.current];
-      copiedState.forms[formIndex].options.splice(dragItemRef.current, 1);
-      copiedState.forms[formIndex].options.splice(dragOverItemRef.current, 0, dragItem);
-      state.forms[formIndex].options = copiedState.forms[formIndex].options;
-    },
-
     deleteForm(state, action) {
       const { formIndex } = action.payload;
       state.forms.splice(formIndex, 1);
@@ -77,9 +59,18 @@ const formSlice = createSlice({
       state.forms[formIndex].isMandatory = !state.forms[formIndex].isMandatory;
     },
 
+    swipeForm(state, action) {
+      const { dragItemRef, dragOverItemRef } = action.payload;
+      const copiedState = JSON.parse(JSON.stringify(state));
+      const dragItem = copiedState.forms[dragItemRef.current];
+      copiedState.forms.splice(dragItemRef.current, 1);
+      copiedState.forms.splice(dragOverItemRef.current, 0, dragItem);
+      state.forms = copiedState.forms;
+    },
+
     addOption(state, action) {
       const { formIndex, id } = action.payload;
-      state.forms[formIndex].options.push({ id, value: '' });
+      state.forms[formIndex].options.push({ id, value: `옵션 ${state.forms[formIndex].options.length + 1}` });
     },
 
     deleteOption(state, action) {
@@ -90,6 +81,15 @@ const formSlice = createSlice({
     setOption(state, action) {
       const { formIndex, optionIndex, value } = action.payload;
       state.forms[formIndex].options[optionIndex].value = value;
+    },
+
+    swipeOption(state, action) {
+      const { formIndex, dragItemRef, dragOverItemRef } = action.payload;
+      const copiedState = JSON.parse(JSON.stringify(state));
+      const dragItem = copiedState.forms[formIndex].options[dragItemRef.current];
+      copiedState.forms[formIndex].options.splice(dragItemRef.current, 1);
+      copiedState.forms[formIndex].options.splice(dragOverItemRef.current, 0, dragItem);
+      state.forms[formIndex].options = copiedState.forms[formIndex].options;
     },
   },
 });

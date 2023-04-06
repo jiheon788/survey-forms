@@ -1,4 +1,14 @@
-import { Button, CardBody, CardHeader, FormControl, FormLabel, Card, Flex, useDisclosure } from '@chakra-ui/react';
+import {
+  Button,
+  CardBody,
+  CardHeader,
+  FormControl,
+  FormLabel,
+  Card,
+  Flex,
+  useDisclosure,
+  CardFooter,
+} from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/store';
 import FormSelector from '@/components/formViewer/FormSelector';
@@ -20,6 +30,7 @@ const PreviewPage = () => {
       <Card bg="white" w="100%" borderRadius="md" boxShadow="sm">
         <CardHeader fontSize="2xl">{title}</CardHeader>
         <CardBody>{description}</CardBody>
+        <CardFooter color="red">* 필수항목</CardFooter>
       </Card>
 
       <form onSubmit={handleSubmit(onSubmit)}>

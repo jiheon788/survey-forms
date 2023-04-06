@@ -12,9 +12,9 @@ const MultipleChoiceForm = ({ register, formData, isResult }: IFormSelectorProps
       isDisabled={isResult}
     >
       <Stack>
-        {formData.options.map((option, index) => (
-          <Radio key={option.id} value={option.value || `옵션 ${index + 1}`} {...register(formData.id)}>
-            {option.value || `옵션 ${index + 1}`}
+        {formData.options.map((option) => (
+          <Radio key={option.id} value={option.value || 'Null'} {...register(formData.id)}>
+            {option.value || 'Null'}
           </Radio>
         ))}
       </Stack>
