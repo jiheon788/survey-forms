@@ -4,6 +4,7 @@ import uuid from 'react-uuid';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { addOption, deleteOption, setOption, swipeOption } from '@/store/slices/formSlice';
 import useDragNDrop from '@/hooks/useDragNDrop';
+import { Message } from '@/constants/Message';
 import { IFormSwitcherProps } from './FormSwitcher';
 
 const CheckBoxForm = ({ formIndex }: Pick<IFormSwitcherProps, 'formIndex'>) => {
@@ -29,7 +30,7 @@ const CheckBoxForm = ({ formIndex }: Pick<IFormSwitcherProps, 'formIndex'>) => {
         >
           <DragHandleIcon color="gray.500" cursor="grab" onMouseOver={onDraggable} onMouseOut={onDisDraggable} />
           <Checkbox isChecked={false} />
-          <Editable defaultValue={option.value} placeholder={'옵션을 입력하세요'}>
+          <Editable defaultValue={option.value} placeholder={Message.PLEASE_INPUT('옵션')}>
             <EditablePreview />
             <EditableInput onChange={(e) => dispatch(setOption({ formIndex, optionIndex, value: e.target.value }))} />
           </Editable>

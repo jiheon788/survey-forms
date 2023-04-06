@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import FormMeta from '@/meta/FormMeta';
+import { DefaultValue } from '@/constants/DefaultValue';
 
 interface ISetFormsPayload {
   name: 'title' | 'description';
@@ -12,16 +13,16 @@ interface ISetFormPayload {
   value: string;
 }
 const initialForm = {
-  id: 'initial',
-  questionBody: '제목없는 질문',
+  id: DefaultValue.ID,
+  questionBody: DefaultValue.QUESTION,
   answerType: Object.keys(FormMeta)[0],
   isMandatory: false,
-  options: [{ id: 'initial', value: '옵션 1' }],
+  options: [{ id: DefaultValue.ID, value: DefaultValue.OPTION(1) }],
 };
 
 const initialState = {
-  title: '제목 없는 설문지',
-  description: '설문지 설명',
+  title: DefaultValue.TITLE,
+  description: DefaultValue.DESCRIPTION,
   forms: [initialForm],
 };
 
@@ -70,7 +71,10 @@ const formSlice = createSlice({
 
     addOption(state, action) {
       const { formIndex, id } = action.payload;
-      state.forms[formIndex].options.push({ id, value: `옵션 ${state.forms[formIndex].options.length + 1}` });
+      state.forms[formIndex].options.push({
+        id,
+        value: DefaultValue.OPTION(state.forms[formIndex].options.length + 1),
+      });
     },
 
     deleteOption(state, action) {

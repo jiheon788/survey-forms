@@ -8,12 +8,11 @@ const useDragNDrop = (action: ActionCreatorWithPayload<any>, formIndex: null | n
   const dragOverItemRef = useRef<number | null>(null);
   const dispatch = useAppDispatch();
 
-  const onDraggable = () => setIsDraggable(true);
-  const onDisDraggable = () => setIsDraggable(false);
-
   const setDragRef = (index: number) => (dragItemRef.current = index);
   const setDragOverRef = (index: number) => (dragOverItemRef.current = index);
 
+  const onDraggable = () => setIsDraggable(true);
+  const onDisDraggable = () => setIsDraggable(false);
   const onSwipe = () => {
     formIndex === null
       ? dispatch(action({ dragItemRef, dragOverItemRef }))

@@ -33,6 +33,7 @@ import { addForm, setForm, deleteForm, copyForm, toggleForm, swipeForm } from '@
 import FormMeta, { FormMetaKeysType } from '@/meta/FormMeta';
 import FormSwitcher from '@/components/formCreator/FormSwitcher';
 import useDragNDrop from '@/hooks/useDragNDrop';
+import { Message } from '@/constants/Message';
 
 const FormCardList = () => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
@@ -68,7 +69,7 @@ const FormCardList = () => {
           </Center>
           <CardHeader>
             <Flex>
-              <Editable defaultValue={form.questionBody} placeholder="질문을 입력하세요" fontSize="xl">
+              <Editable defaultValue={form.questionBody} placeholder={Message.PLEASE_INPUT('질문')} fontSize="xl">
                 <EditablePreview />
                 <EditableInput
                   name="questionBody"
@@ -111,7 +112,7 @@ const FormCardList = () => {
                 <Portal>
                   <PopoverContent>
                     <PopoverArrow />
-                    <PopoverHeader>정말 삭제하시겠습니까?</PopoverHeader>
+                    <PopoverHeader>{Message.CONFIRM_DELETE}</PopoverHeader>
                     <PopoverCloseButton />
                     <PopoverBody>
                       <Button colorScheme="red" onClick={() => dispatch(deleteForm({ formIndex }))}>

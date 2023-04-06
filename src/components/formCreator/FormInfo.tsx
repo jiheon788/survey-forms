@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setForms } from '@/store/slices/formSlice';
+import { Message } from '@/constants/Message';
 
 const FormInfo = () => {
   const { formData } = useAppSelector((state) => state);
@@ -17,7 +18,7 @@ const FormInfo = () => {
   return (
     <Card bg="white" w="100%" borderRadius="md" boxShadow="sm">
       <CardHeader>
-        <Editable defaultValue={formData.title} placeholder="제목을 입력하세요" fontSize="2xl">
+        <Editable defaultValue={formData.title} placeholder={Message.PLEASE_INPUT('제목')} fontSize="2xl">
           <EditablePreview />
           <EditableInput
             name="title"
@@ -28,7 +29,7 @@ const FormInfo = () => {
         </Editable>
       </CardHeader>
       <CardBody>
-        <Editable defaultValue={formData.description} placeholder="설명을 입력하세요">
+        <Editable defaultValue={formData.description} placeholder={Message.PLEASE_INPUT('설명')}>
           <EditablePreview />
           <EditableTextarea
             name="description"
