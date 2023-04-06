@@ -15,6 +15,17 @@ import {
   Center,
   Flex,
   Spacer,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  Portal,
+  Button,
 } from '@chakra-ui/react';
 import { CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
 import uuid from 'react-uuid';
@@ -95,7 +106,25 @@ const FormCard = ({ form, formIndex, focusedIndex, setFocusedIndex }: IFormCardP
             icon={<CopyIcon />}
             onClick={() => dispatch(copyForm({ formIndex, id: uuid() }))}
           />
-          <IconButton aria-label="delete" icon={<DeleteIcon />} onClick={() => dispatch(deleteForm({ formIndex }))} />
+
+          <Popover>
+            <PopoverTrigger>
+              <IconButton aria-label="delete" icon={<DeleteIcon />} />
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverHeader>정말 삭제하시겠습니까?</PopoverHeader>
+                <PopoverCloseButton />
+                <PopoverBody>
+                  <Button colorScheme="red" onClick={() => dispatch(deleteForm({ formIndex }))}>
+                    OK
+                  </Button>
+                </PopoverBody>
+              </PopoverContent>
+            </Portal>
+          </Popover>
+
           <FormControl display="flex" alignItems="center">
             <FormLabel htmlFor="is-mandatory" mb="0">
               필수

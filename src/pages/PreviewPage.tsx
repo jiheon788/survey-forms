@@ -1,28 +1,30 @@
-import { Button, CardBody, CardHeader, FormControl, FormLabel, Card, Flex } from '@chakra-ui/react';
+import { Button, CardBody, CardHeader, FormControl, FormLabel, Card, Flex, useDisclosure } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/store';
 import FormSelector from '@/components/formViewer/FormSelector';
+import { setResult } from '@/store/slices/resultSlice';
+import CompletedModal from '@/components/formViewer/CompletedModal';
 
 const PreviewPage = () => {
   const { title, description, forms } = useAppSelector((state) => state.formData);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
-
-  console.log(forms);
-
   const { handleSubmit, register } = useForm();
-
-  const onSubmit = (data: { [key: string]: string | string[] }) => console.log(data);
+  const onSubmit = (data: { [key: string]: string | string[] }) => {
+    dispatch(setResult(data));
+    onOpen();
+  };
 
   return (
     <>
       <Card bg="white" w="100%" borderRadius="md" boxShadow="sm">
-        <CardHeader>{title}</CardHeader>
+        <CardHeader fontSize="2xl">{title}</CardHeader>
         <CardBody>{description}</CardBody>
       </Card>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex gap={5} flexDirection="column" w="100%">
-          {forms.map((formData, index) => (
+          {forms.map((formData) => (
             <Card key={formData.id} bg="white" w="100%" borderRadius="md" boxShadow="sm">
               <FormControl isRequired={formData.isMandatory}>
                 <CardHeader>
@@ -43,6 +45,8 @@ const PreviewPage = () => {
           </Button>
         </Flex>
       </form>
+
+      <CompletedModal forms={forms} register={register} isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
