@@ -26,7 +26,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { PlusSquareIcon, CopyIcon, DeleteIcon, DragHandleIcon } from '@chakra-ui/icons';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import uuid from 'react-uuid';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { addForm, setForm, deleteForm, copyForm, toggleForm, swipeForm } from '@/store/slices/formSlice';
@@ -38,7 +38,7 @@ const FormCardList = () => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
   const { forms } = useAppSelector((state) => state.formData);
   const dispatch = useAppDispatch();
-  const { isDraggable, onDraggable, setDragRef, setDragOverRef, onSwipe } = useDragNDrop(swipeForm);
+  const { isDraggable, onDraggable, onDisDraggable, setDragRef, setDragOverRef, onSwipe } = useDragNDrop(swipeForm);
 
   return (
     <>
@@ -59,7 +59,12 @@ const FormCardList = () => {
           onDragEnd={onSwipe}
         >
           <Center p="5px 0 0 0">
-            <DragHandleIcon transform="rotate(90deg)" cursor="grab" onMouseOver={onDraggable} />
+            <DragHandleIcon
+              transform="rotate(90deg)"
+              cursor="grab"
+              onMouseOver={onDraggable}
+              onMouseOut={onDisDraggable}
+            />
           </Center>
           <CardHeader>
             <Flex>
