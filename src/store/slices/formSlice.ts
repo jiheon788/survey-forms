@@ -1,6 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import FormMeta from '@/meta/FormMeta';
 
+const cloneDeep = (obj: any) => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  const copy: any = {};
+  for (const key in obj) {
+    copy[key] = cloneDeep(obj[key]);
+  }
+  return copy;
+};
+
 interface ISetFormsPayload {
   name: 'title' | 'description';
   value: string;
@@ -49,6 +61,15 @@ const formSlice = createSlice({
       state.forms.push({ ...state.forms[formIndex], id });
     },
 
+    swipeForm(state, action) {
+      const { dragItemRef, dragOverItemRef } = action.payload;
+      const copiedState = JSON.parse(JSON.stringify(state));
+      const dragItem = copiedState.forms[dragItemRef.current];
+      copiedState.forms.splice(dragItemRef.current, 1);
+      copiedState.forms.splice(dragOverItemRef.current, 0, dragItem);
+      state.forms = copiedState.forms;
+    },
+
     deleteForm(state, action) {
       const { formIndex } = action.payload;
       state.forms.splice(formIndex, 1);
@@ -76,7 +97,17 @@ const formSlice = createSlice({
   },
 });
 
-export const { setForms, addForm, setForm, copyForm, deleteForm, toggleForm, addOption, deleteOption, setOption } =
-  formSlice.actions;
+export const {
+  setForms,
+  addForm,
+  setForm,
+  copyForm,
+  deleteForm,
+  toggleForm,
+  swipeForm,
+  addOption,
+  deleteOption,
+  setOption,
+} = formSlice.actions;
 
 export default formSlice.reducer;
