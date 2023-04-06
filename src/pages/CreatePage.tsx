@@ -1,11 +1,11 @@
-import FormInfo from '@/components/formCreator/FormInfo';
-import FormCardList from '@/components/formCreator/FormCardList';
+import FormHeader from '@/components/formCreator/FormHeader';
+import FormCreate from '@/components/formCreator/FormCreate';
 
 const CreatePage = () => {
   return (
     <>
-      <FormInfo />
-      <FormCardList />
+      <FormHeader />
+      <FormCreate />
     </>
   );
 };

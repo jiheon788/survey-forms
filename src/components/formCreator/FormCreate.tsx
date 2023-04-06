@@ -35,7 +35,7 @@ import FormSwitcher from '@/components/formCreator/FormSwitcher';
 import useDragNDrop from '@/hooks/useDragNDrop';
 import { Message } from '@/constants/Message';
 
-const FormCardList = () => {
+const FormCreate = () => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
   const { forms } = useAppSelector((state) => state.formData);
   const dispatch = useAppDispatch();
@@ -156,4 +156,4 @@ const FormCardList = () => {
   );
 };
 
-export default FormCardList;
+export default FormCreate;
