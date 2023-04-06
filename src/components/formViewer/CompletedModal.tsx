@@ -12,21 +12,13 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { IForm } from '@/interface/main';
 import FormSelector from './FormSelector';
 
 interface ICompletedModalProps {
   isOpen: boolean;
   onClose: () => void;
-  forms: {
-    id: string;
-    questionBody: string;
-    answerType: string;
-    isMandatory: boolean;
-    options: {
-      id: string;
-      value: string;
-    }[];
-  }[];
+  forms: IForm[];
   register: UseFormRegister<FieldValues>;
 }
 

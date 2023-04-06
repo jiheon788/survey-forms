@@ -1,5 +1,6 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import FormMeta, { FormMetaKeysType } from '@/meta/FormMeta';
+import { IForm } from '@/interface/main';
 import CheckBoxForm from './CheckBoxForm';
 import DropdownForm from './DropdownForm';
 import LongAnswerForm from './LongAnswerForm';
@@ -8,16 +9,7 @@ import ShortAnswerForm from './ShortAnswerForm';
 
 export interface IFormSelectorProps {
   register: UseFormRegister<FieldValues>;
-  formData: {
-    id: string;
-    questionBody: string;
-    answerType: string;
-    isMandatory: boolean;
-    options: {
-      id: string;
-      value: string;
-    }[];
-  };
+  formData: IForm;
   isResult?: boolean;
 }
 
