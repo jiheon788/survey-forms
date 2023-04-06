@@ -32,13 +32,13 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { addForm, setForm, deleteForm, copyForm, toggleForm, swipeForm } from '@/store/slices/formSlice';
 import FormMeta, { FormMetaKeysType } from '@/meta/FormMeta';
 import FormSwitcher from '@/components/formCreator/FormSwitcher';
+import useDragNDrop from '@/hooks/useDragNDrop';
 
 const FormCardList = () => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
   const { forms } = useAppSelector((state) => state.formData);
   const dispatch = useAppDispatch();
-  const dragItemRef = useRef<number | null>(null);
-  const dragOverItemRef = useRef<number | null>(null);
+  const { isDraggable, onDraggable, setDragRef, setDragOverRef, onSwipe } = useDragNDrop(swipeForm);
 
   return (
     <>
@@ -52,14 +52,14 @@ const FormCardList = () => {
           borderLeft={focusedIndex === formIndex ? '8px' : ''}
           borderColor="teal.500"
           onClick={() => setFocusedIndex(formIndex)}
-          draggable
-          onDragStart={() => (dragItemRef.current = formIndex)}
-          onDragEnter={() => (dragOverItemRef.current = formIndex)}
+          draggable={isDraggable}
+          onDragStart={() => setDragRef(formIndex)}
+          onDragEnter={() => setDragOverRef(formIndex)}
           onDragOver={(e) => e.preventDefault()}
-          onDragEnd={() => dispatch(swipeForm({ dragItemRef, dragOverItemRef }))}
+          onDragEnd={onSwipe}
         >
           <Center p="5px 0 0 0">
-            <DragHandleIcon transform="rotate(90deg)" />
+            <DragHandleIcon transform="rotate(90deg)" cursor="grab" onMouseOver={onDraggable} />
           </Center>
           <CardHeader>
             <Flex>
