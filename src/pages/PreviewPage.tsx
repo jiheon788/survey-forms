@@ -38,6 +38,9 @@ const PreviewPage = () => {
           <Button type="submit" variant="solid" colorScheme="teal">
             제출
           </Button>
+          <Button variant="ghost" colorScheme="teal" type="reset">
+            양식 지우기
+          </Button>
         </Flex>
       </form>
     </>

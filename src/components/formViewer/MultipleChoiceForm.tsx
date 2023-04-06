@@ -5,9 +5,9 @@ const MultipleChoiceForm = ({ register, formData }: Pick<IFormSelectorProps, 're
   return (
     <RadioGroup colorScheme="teal">
       <Stack>
-        {formData.options.map((option) => (
-          <Radio key={option.id} value={option.value} {...register(formData.id)}>
-            {option.value}
+        {formData.options.map((option, index) => (
+          <Radio key={option.id} value={option.value || `옵션 ${index + 1}`} {...register(formData.id)}>
+            {option.value || `옵션 ${index + 1}`}
           </Radio>
         ))}
       </Stack>
