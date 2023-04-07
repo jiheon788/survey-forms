@@ -10,10 +10,8 @@ import { IFormSwitcherProps } from './FormSwitcher';
 const CheckBoxForm = ({ formIndex }: Pick<IFormSwitcherProps, 'formIndex'>) => {
   const { options } = useAppSelector((state) => state.formData.forms[formIndex]);
   const dispatch = useAppDispatch();
-  const { isDraggable, onDraggable, onDisDraggable, setDragRef, setDragOverRef, onSwipe } = useDragNDrop(
-    swipeOption,
-    formIndex,
-  );
+  const { isDraggable, onDraggable, onDisDraggable, setDragRef, setDragOverRef, onSwipe } =
+    useDragNDrop<'formData/swipeOption'>(swipeOption, formIndex);
 
   return (
     <Stack>

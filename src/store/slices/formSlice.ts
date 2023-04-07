@@ -61,11 +61,11 @@ const formSlice = createSlice({
     },
 
     swipeForm(state, action) {
-      const { dragItemRef, dragOverItemRef } = action.payload;
+      const { dragRef, dragOverRef } = action.payload;
       const copiedState = JSON.parse(JSON.stringify(state));
-      const dragItem = copiedState.forms[dragItemRef.current];
-      copiedState.forms.splice(dragItemRef.current, 1);
-      copiedState.forms.splice(dragOverItemRef.current, 0, dragItem);
+      const dragItem = copiedState.forms[dragRef.current];
+      copiedState.forms.splice(dragRef.current, 1);
+      copiedState.forms.splice(dragOverRef.current, 0, dragItem);
       state.forms = copiedState.forms;
     },
 
@@ -88,11 +88,11 @@ const formSlice = createSlice({
     },
 
     swipeOption(state, action) {
-      const { formIndex, dragItemRef, dragOverItemRef } = action.payload;
+      const { formIndex, dragRef, dragOverRef } = action.payload;
       const copiedState = JSON.parse(JSON.stringify(state));
-      const dragItem = copiedState.forms[formIndex].options[dragItemRef.current];
-      copiedState.forms[formIndex].options.splice(dragItemRef.current, 1);
-      copiedState.forms[formIndex].options.splice(dragOverItemRef.current, 0, dragItem);
+      const dragItem = copiedState.forms[formIndex].options[dragRef.current];
+      copiedState.forms[formIndex].options.splice(dragRef.current, 1);
+      copiedState.forms[formIndex].options.splice(dragOverRef.current, 0, dragItem);
       state.forms[formIndex].options = copiedState.forms[formIndex].options;
     },
   },

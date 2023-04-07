@@ -39,7 +39,8 @@ const FormCreate = () => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
   const { forms } = useAppSelector((state) => state.formData);
   const dispatch = useAppDispatch();
-  const { isDraggable, onDraggable, onDisDraggable, setDragRef, setDragOverRef, onSwipe } = useDragNDrop(swipeForm);
+  const { isDraggable, onDraggable, onDisDraggable, setDragRef, setDragOverRef, onSwipe } =
+    useDragNDrop<'formData/swipeForm'>(swipeForm);
 
   return (
     <>

@@ -3,9 +3,9 @@
 
 ## [Demo](https://classum-01-survey-forms-jiheon788.netlify.app)&nbsp;&nbsp;&nbsp;&nbsp;[요구 사항 목록](./REQUIREMENTS.md)
 
-구글 설문 조사를 구현하는 클라썸 기업 과제입니다. 과제 요구사항을 모두 준수하였습니다. 
+구글 설문 조사를 구현하는 프로젝트입니다. 요구사항을 모두 준수하였습니다. 
 
-제가 자주 사용하는 Path Alias, Dynamic Routing, eslint, prettier 설정 등을 위해 [Custom CRA + TypeScript 템플릿](https://github.com/jiheon788/react-boilerplate)으로 제작되었습니다.
+자주 사용하는 Path Alias, Dynamic Routing, eslint, prettier 설정 등을 위해 [Custom CRA + TypeScript 템플릿](https://github.com/jiheon788/react-boilerplate)으로 제작되었습니다.
 
 ## Getting Started
 
@@ -26,13 +26,12 @@ npm start
 
 ## Features
 
-- CRU- 설문지 Title, Description
+- CRU- 설문지 (Title, Description)
 - CRUD 질문 (단답, 장문, 객관식, 체크박스, 드롭다운 5 가지 유형)
   - Copy, 필수 질문 설정
 - CRUD 질문 옵션 (객관식, 체크박스, 드롭다운)
 - 미리보기 (제출, 양식 초기화)
-- 질문 순서 변경 (Drag & Drop)
-- 질문의 옵션 순서 변경 (Drag & Drop)
+- 질문 & 옵션 순서 변경 (Drag & Drop)
 
 ## Tech stack
 
@@ -48,7 +47,7 @@ src
 │  └─formViewer # 폼 뷰어
 ├─constants # 상수
 ├─hooks # 커스텀 훅
-├─meta # 메타데이터
+├─meta # 메타 데이터
 ├─pages # 페이지 컴포넌트
 ├─store # 리덕스 스토어
 │  └─slices
