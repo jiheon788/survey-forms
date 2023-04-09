@@ -52,3 +52,7 @@ src
 │  └─slices
 └─styles 
 ```
+
+
+## Demo of this project
+![새 비디오 만들기 (2)](https://user-images.githubusercontent.com/90181028/230795947-84c33001-2fd1-4314-8e84-c324f765f1f1.gif)
