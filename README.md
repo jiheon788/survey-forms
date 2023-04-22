@@ -3,7 +3,7 @@
 
 ## [Demo](https://classum-01-survey-forms-jiheon788.netlify.app)&nbsp;&nbsp;&nbsp;&nbsp;[Requirements Spec](./REQUIREMENTS.md)
 
-It's a project to implement **Google Forms**. All requirements have been complied with. Created from a [Custom CRA + TypeScript template](https://github.com/jiheon788/react-boilerplate) for frequently used Path Alias, Dynamic Routing, eslint, and Prettier settings.
+It's a project to implement **Google Forms** that adheres to the All requirements. Created from a [Custom CRA + TypeScript template](https://github.com/jiheon788/react-boilerplate) for frequently used Path Alias, Dynamic Routing, eslint, and Prettier settings.
 
 ## Getting Started
 You can install and run it yourself by following the commands. Or You can view a [live demo](https://classum-01-survey-forms-jiheon788.netlify.app)
@@ -35,23 +35,6 @@ npm start
 ## Tech stack
 
 `React`, `TypeScript`, `Redux-toolkit`, `Chakra-UI`, `react-hook-form`, `react-uuid`, `react-router-dom`,  `craco`
-
-## Directory
-
-```bash
-src
-├─components
-│  ├─common  
-│  ├─formCreator  
-│  └─formViewer 
-├─constants 
-├─hooks 
-├─meta 
-├─pages 
-├─store 
-│  └─slices
-└─styles 
-```
 
 
 ## Demo of this project
